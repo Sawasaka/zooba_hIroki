@@ -740,6 +740,130 @@
     transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
   }
 
+  /* ── HELP MODAL ── */
+  .help-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-border);
+    background: var(--gold-dim);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    margin-left: 6px;
+    flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s;
+    vertical-align: middle;
+    font-family: 'Hiragino Sans', sans-serif;
+  }
+
+  .help-btn:hover {
+    background: rgba(201,168,76,0.3);
+    border-color: var(--gold);
+  }
+
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5,12,22,0.75);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: #142236;
+    border: 1px solid var(--gold-border);
+    border-radius: 8px;
+    padding: 32px;
+    max-width: 540px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+    animation: fadeUp 0.25s ease both;
+  }
+
+  .modal-title {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .modal-title::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+    display: block;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+    font-family: inherit;
+  }
+
+  .modal-close:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+
+  .modal-section { margin-bottom: 20px; }
+  .modal-section:last-child { margin-bottom: 0; }
+
+  .modal-section-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .modal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .modal-list li {
+    font-size: 12px;
+    color: var(--text-secondary);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .modal-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+    top: 2px;
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes pipeIn {
     from { opacity: 0; transform: scaleX(0.92); }
@@ -827,7 +951,7 @@
   <div id="tab-all" class="tab-panel active">
 
     <!-- KPI FLOW (全体・合算) -->
-    <div class="section-label">Key Performance Indicators — 全期間合算</div>
+    <div class="section-label">Key Performance Indicators — 全期間合算 <button class="help-btn" onclick="document.getElementById('phase-modal').classList.add('open')">?</button></div>
     <div class="kpi-flow">
       <div class="kpi-card">
         <div class="kpi-label">有効商談数</div>
@@ -881,7 +1005,7 @@
   <div id="tab-mar" class="tab-panel">
 
   <!-- KPI FLOW -->
-  <div class="section-label">Key Performance Indicators</div>
+  <div class="section-label">Key Performance Indicators <button class="help-btn" onclick="document.getElementById('phase-modal').classList.add('open')">?</button></div>
   <div class="kpi-flow">
 
     <div class="kpi-card">
@@ -1036,26 +1160,6 @@
     </div>
   </div>
 
-  <!-- PHASE CONDITIONS -->
-  <div class="section-label">Phase 03 Qualification Criteria</div>
-  <div class="phase-grid">
-    <div class="phase-card">
-      <div class="phase-card-title">有効商談の必須条件</div>
-      <ul class="condition-list">
-        <li>導入の担当部門であること</li>
-        <li>ヘルプデスク課題 または SaaS・デバイス管理課題について組織的に検討中</li>
-        <li>導入時期感：1年以内 または 2〜3年以内</li>
-      </ul>
-    </div>
-    <div class="phase-card">
-      <div class="phase-card-title">フェーズ 3 への昇格条件</div>
-      <ul class="condition-list">
-        <li>2回目以降のアポイントが確定していること</li>
-        <li>または、トライアル意向があること</li>
-      </ul>
-    </div>
-  </div>
-
   </div><!-- /tab-mar -->
 
   <!-- ===== 4月 TAB ===== -->
@@ -1070,6 +1174,29 @@
       <div class="empty-state-sub">4月分のレポートが追加されると、ここに表示されます。</div>
     </div>
   </div><!-- /tab-apr -->
+
+  <!-- PHASE CONDITIONS MODAL -->
+  <div id="phase-modal" class="modal-overlay" onclick="if(event.target===this)this.classList.remove('open')">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('phase-modal').classList.remove('open')">✕</button>
+      <div class="modal-title">Phase 03 認定条件</div>
+      <div class="modal-section">
+        <div class="modal-section-title">有効商談の必須条件</div>
+        <ul class="modal-list">
+          <li>導入の担当部門であること</li>
+          <li>ヘルプデスク課題 または SaaS・デバイス管理課題について組織的に検討中</li>
+          <li>導入時期感：1年以内 または 2〜3年以内</li>
+        </ul>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-title">フェーズ 3 への昇格条件</div>
+        <ul class="modal-list">
+          <li>2回目以降のアポイントが確定していること</li>
+          <li>または、トライアル意向があること</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer>
