@@ -233,6 +233,43 @@
     white-space: nowrap;
   }
 
+  .kpi-breakdown {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .kpi-breakdown-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+  }
+
+  .kpi-breakdown-label {
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .kpi-breakdown-label::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5B8DB8;
+    flex-shrink: 0;
+  }
+
+  .kpi-breakdown-val {
+    color: #5B8DB8;
+    font-weight: 700;
+  }
+
   .kpi-label {
     font-size: 10px;
     letter-spacing: 0.14em;
@@ -1009,16 +1046,13 @@
       <div class="kpi-card">
         <div class="kpi-label" style="color:#85C1E9;font-weight:700;font-size:11px;">フェーズ 2 → 3 昇格</div>
         <div class="kpi-value" style="color:#85C1E9;">7<span>社</span></div>
-        <div class="kpi-sub">累計 Phase 2 からの昇格件数</div>
-      </div>
-      <div class="kpi-arrow">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <div class="kpi-arrow-label">PJ化</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label" style="color:#5B8DB8;font-weight:700;font-size:11px;">フェーズ 4 到達</div>
-        <div class="kpi-value" style="color:#5B8DB8;">0<span>社</span></div>
-        <div class="kpi-sub">PJ可能案件（社内障壁クリア）</div>
+        <div class="kpi-sub">今期 Phase 2 からの昇格件数</div>
+        <div class="kpi-breakdown">
+          <div class="kpi-breakdown-row">
+            <span class="kpi-breakdown-label">うちPJ可能案件（フェーズ4）</span>
+            <span class="kpi-breakdown-val">0社</span>
+          </div>
+        </div>
       </div>
       <div class="kpi-arrow">
         <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1078,19 +1112,12 @@
       <div class="kpi-label" style="color:#85C1E9;font-weight:700;font-size:11px;">フェーズ 2 → 3 昇格</div>
       <div class="kpi-value" style="color:#85C1E9;">7<span>社</span></div>
       <div class="kpi-sub">今期 Phase 2 からの昇格件数</div>
-    </div>
-
-    <div class="kpi-arrow">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      <div class="kpi-arrow-label">PJ化</div>
-    </div>
-
-    <div class="kpi-card">
-      <div class="kpi-label" style="color:#5B8DB8;font-weight:700;font-size:11px;">フェーズ 4 到達</div>
-      <div class="kpi-value" style="color:#5B8DB8;">0<span>社</span></div>
-      <div class="kpi-sub">PJ可能案件（社内障壁クリア）</div>
+      <div class="kpi-breakdown">
+        <div class="kpi-breakdown-row">
+          <span class="kpi-breakdown-label">うちPJ可能案件（フェーズ4）</span>
+          <span class="kpi-breakdown-val">0社</span>
+        </div>
+      </div>
     </div>
 
     <div class="kpi-arrow">
