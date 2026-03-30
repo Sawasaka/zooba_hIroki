@@ -174,142 +174,149 @@
     display: block;
   }
 
-  /* ── KPI GRID ── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
+  /* ── PIPELINE FLOW ── */
+  .pipeline-flow {
     margin-bottom: 40px;
   }
 
-  .kpi-card {
-    background: var(--navy-card);
-    border: 1px solid var(--gold-border);
-    border-radius: 6px;
-    padding: 28px 24px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s;
-  }
-
-  .kpi-card:first-child {
-    border-color: rgba(201,168,76,0.6);
-  }
-
-  .kpi-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--gold);
-    opacity: 0.6;
-  }
-
-  .kpi-card:nth-child(2)::before { opacity: 0.3; }
-  .kpi-card:nth-child(3)::before { opacity: 0.15; }
-
-  .kpi-card:hover { border-color: rgba(201,168,76,0.5); }
-
-  .kpi-label {
-    font-size: 11px;
-    letter-spacing: 0.12em;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .kpi-value {
-    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
-    font-size: 56px;
-    font-weight: 300;
-    color: var(--gold-light);
-    line-height: 1;
-    letter-spacing: -2px;
-  }
-
-  .kpi-value span {
-    font-size: 20px;
-    color: var(--text-secondary);
-    font-family: 'Hiragino Sans', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0;
-    margin-left: 4px;
-  }
-
-  .kpi-sub {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px solid rgba(255,255,255,0.06);
-  }
-
-  /* ── BREAKDOWN BAR ── */
-  .breakdown-section {
-    background: var(--navy-card);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 6px;
-    padding: 28px 24px;
-    margin-bottom: 40px;
-  }
-
-  .breakdown-title {
-    font-size: 12px;
-    color: var(--text-secondary);
-    letter-spacing: 0.1em;
-    margin-bottom: 20px;
-  }
-
-  .funnel-bar {
+  .pipeline-track {
     display: flex;
-    height: 40px;
-    border-radius: 4px;
+    align-items: stretch;
+    gap: 0;
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 8px;
     overflow: hidden;
-    gap: 2px;
     margin-bottom: 16px;
   }
 
-  .funnel-segment {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--navy);
-    transition: flex 0.8s cubic-bezier(0.4,0,0.2,1);
+  .pipe-stage {
+    flex: 1;
+    padding: 20px 18px;
     position: relative;
-    min-width: 60px;
-  }
-
-  .funnel-segment.trial { background: var(--gold); flex: 4; }
-  .funnel-segment.next  { background: #5B8DB8; flex: 2; }
-  .funnel-segment.poc   { background: var(--status-green); flex: 1; }
-
-  .funnel-legend {
     display: flex;
-    gap: 24px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 6px;
+    transition: background 0.2s;
   }
 
-  .legend-item {
+  .pipe-stage:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 14px solid var(--navy-card);
+    z-index: 2;
+    filter: drop-shadow(2px 0 0 rgba(255,255,255,0.06));
+  }
+
+  .pipe-stage:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    right: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 19px solid transparent;
+    border-bottom: 19px solid transparent;
+    border-left: 15px solid rgba(255,255,255,0.07);
+    z-index: 1;
+  }
+
+  .pipe-stage.stage-source  { background: rgba(255,255,255,0.02); }
+  .pipe-stage.stage-phase3  { background: rgba(201,168,76,0.06); border-left: 3px solid rgba(201,168,76,0.4); }
+  .pipe-stage.stage-trial   { background: rgba(243,156,18,0.07); border-left: 3px solid rgba(243,156,18,0.4); }
+  .pipe-stage.stage-meeting { background: rgba(91,141,184,0.07); border-left: 3px solid rgba(91,141,184,0.4); }
+  .pipe-stage.stage-poc     { background: rgba(46,204,113,0.08); border-left: 3px solid rgba(46,204,113,0.5); }
+
+  .pipe-stage-tag {
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .pipe-stage-name {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .pipe-stage-count {
+    font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
+    font-size: 36px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-top: 4px;
+  }
+
+  .pipe-stage-count span {
+    font-family: 'Hiragino Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 2px;
+  }
+
+  .pipe-stage.stage-source  .pipe-stage-count { color: var(--text-secondary); }
+  .pipe-stage.stage-phase3  .pipe-stage-count { color: var(--gold-light); }
+  .pipe-stage.stage-trial   .pipe-stage-count { color: #F0B429; }
+  .pipe-stage.stage-meeting .pipe-stage-count { color: #85C1E9; }
+  .pipe-stage.stage-poc     .pipe-stage-count { color: #2ECC71; }
+
+  .pipe-companies {
+    margin-top: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .pipe-company {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    padding-left: 8px;
+    border-left: 2px solid rgba(255,255,255,0.1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pipe-stage.stage-trial   .pipe-company { border-color: rgba(243,156,18,0.3); }
+  .pipe-stage.stage-meeting .pipe-company { border-color: rgba(91,141,184,0.3); }
+  .pipe-stage.stage-poc     .pipe-company { border-color: rgba(46,204,113,0.4); color: rgba(46,204,113,0.7); }
+
+  .pipeline-summary {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .pipe-summary-item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-secondary);
   }
 
-  .legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
+  .pipe-summary-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
     flex-shrink: 0;
   }
 
-  .legend-item strong {
+  .pipe-summary-item strong {
     color: var(--text-primary);
-    font-size: 14px;
   }
 
   /* ── DEALS TABLE ── */
@@ -583,6 +590,12 @@
   }
 
   /* ── ANIMATIONS ── */
+  @keyframes pipeIn {
+    from { opacity: 0; transform: scaleX(0.92); }
+    to   { opacity: 1; transform: scaleX(1); }
+  }
+  .pipeline-track { animation: pipeIn 0.7s cubic-bezier(0.4,0,0.2,1) 0.2s both; transform-origin: left; }
+
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -594,9 +607,8 @@
   }
 
   header            { animation: fadeUp 0.6s ease 0.05s both; }
-  .kpi-grid         { animation: fadeUp 0.6s ease 0.15s both; }
-  .breakdown-section{ animation: fadeUp 0.6s ease 0.25s both; }
-  .deals-section    { animation: fadeUp 0.6s ease 0.35s both; }
+  .pipeline-flow    { animation: fadeUp 0.6s ease 0.15s both; }
+  .deals-section    { animation: fadeUp 0.6s ease 0.30s both; }
   .handover-grid    { animation: fadeUp 0.6s ease 0.45s both; }
   .phase-grid       { animation: fadeUp 0.6s ease 0.50s both; }
   footer            { animation: fadeUp 0.6s ease 0.55s both; }
@@ -653,46 +665,68 @@
     </div>
   </header>
 
-  <!-- KPI -->
-  <div class="section-label">Key Performance Indicators</div>
-  <div class="kpi-grid">
-    <div class="kpi-card">
-      <div class="kpi-label">有効商談数</div>
-      <div class="kpi-value" id="kpi1">7<span>社</span></div>
-      <div class="kpi-sub">フェーズ03 認定済み商談の総数</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">フェーズ2 → 3 昇格</div>
-      <div class="kpi-value" id="kpi2">7<span>社</span></div>
-      <div class="kpi-sub">今期 Phase 2 からの昇格件数</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">POC 実行確定</div>
-      <div class="kpi-value" id="kpi3">1<span>社</span></div>
-      <div class="kpi-sub">最優先クロージング案件</div>
-    </div>
-  </div>
+  <!-- PIPELINE FLOW -->
+  <div class="section-label">Pipeline Progression</div>
+  <div class="pipeline-flow">
+    <div class="pipeline-track">
 
-  <!-- FUNNEL BAR -->
-  <div class="breakdown-section">
-    <div class="breakdown-title">商談ステータス内訳 — 7社</div>
-    <div class="funnel-bar">
-      <div class="funnel-segment trial">4</div>
-      <div class="funnel-segment next">2</div>
-      <div class="funnel-segment poc">1</div>
+      <div class="pipe-stage stage-source">
+        <div class="pipe-stage-tag">起点</div>
+        <div class="pipe-stage-name">Phase 2<br>初回商談済み</div>
+        <div class="pipe-stage-count">7<span>社</span></div>
+      </div>
+
+      <div class="pipe-stage stage-phase3">
+        <div class="pipe-stage-tag">昇格</div>
+        <div class="pipe-stage-name">Phase 3<br>プロジェクト化予定</div>
+        <div class="pipe-stage-count">7<span>社</span></div>
+      </div>
+
+      <div class="pipe-stage stage-trial">
+        <div class="pipe-stage-tag">トライアル意向</div>
+        <div class="pipe-stage-name">導入意向<br>獲得済み</div>
+        <div class="pipe-stage-count">4<span>社</span></div>
+        <div class="pipe-companies">
+          <div class="pipe-company">フューチャーセキュアウェイブ</div>
+          <div class="pipe-company">サンテミナ</div>
+          <div class="pipe-company">豊田スチールセンター</div>
+          <div class="pipe-company">ユニソルホールディングス</div>
+        </div>
+      </div>
+
+      <div class="pipe-stage stage-meeting">
+        <div class="pipe-stage-tag">次回商談</div>
+        <div class="pipe-stage-name">アポ調整中<br>/ RFP対応</div>
+        <div class="pipe-stage-count">2<span>社</span></div>
+        <div class="pipe-companies">
+          <div class="pipe-company">フォーティエンスコンサルティング</div>
+          <div class="pipe-company">株式会社MTG</div>
+        </div>
+      </div>
+
+      <div class="pipe-stage stage-poc">
+        <div class="pipe-stage-tag">最前線</div>
+        <div class="pipe-stage-name">POC<br>実行確定</div>
+        <div class="pipe-stage-count">1<span>社</span></div>
+        <div class="pipe-companies">
+          <div class="pipe-company">ポールトゥウィン</div>
+        </div>
+      </div>
+
     </div>
-    <div class="funnel-legend">
-      <div class="legend-item">
-        <div class="legend-dot" style="background:var(--gold)"></div>
-        トライアル導入意向 (a)&ensp;<strong>4社</strong>
+
+    <div class="pipeline-summary">
+      <div class="pipe-summary-item">
+        <div class="pipe-summary-dot" style="background:#F0B429"></div>
+        トライアル意向 <strong>4社</strong>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:#5B8DB8"></div>
-        次回商談希望 (b)&ensp;<strong>2社</strong>
+      <div class="pipe-summary-item">
+        <div class="pipe-summary-dot" style="background:#5B8DB8"></div>
+        次回商談 / RFP <strong>2社</strong>
       </div>
-      <div class="legend-item">
-        <div class="legend-dot" style="background:var(--status-green)"></div>
-        POC 実行確定&ensp;<strong>1社</strong>
+      <div class="pipe-summary-item">
+        <div class="pipe-summary-dot" style="background:#2ECC71"></div>
+        POC 実行確定 <strong>1社</strong>
       </div>
     </div>
   </div>
