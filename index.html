@@ -423,6 +423,8 @@
     flex-shrink: 0;
   }
 
+  .status-ph3      { background: rgba(201,168,76,0.15);  color: #C9A84C; }
+  .status-eval     { background: rgba(46,204,113,0.15);  color: #2ECC71; }
   .status-setup    { background: rgba(46,204,113,0.15);  color: #2ECC71; }
   .status-adjust   { background: rgba(52,152,219,0.15);  color: #5DADE2; }
   .status-poc      { background: rgba(155,89,182,0.15);  color: #BB8FCE; }
@@ -983,17 +985,17 @@
 
     <!-- DEALS TABLE (全体) -->
     <div class="deals-section">
-      <div class="section-label">Pipeline Detail — 全件</div>
+      <div class="section-label">有効商談一覧 — 全件</div>
       <table class="deals-table">
         <thead><tr><th>#</th><th>企業名 / 担当</th><th>ステータス</th><th>進捗・備考</th></tr></thead>
         <tbody>
-          <tr><td><span class="deal-no">01</span></td><td><div class="deal-company">フューチャーセキュアウェイブ株式会社</div><div class="deal-members">名和 / 菊池 / 沢坂</div></td><td><span class="status-badge status-setup">セットアップ完了・検証中</span></td><td><div class="deal-note">2回目商談完了済み。現在セットアップ完了し検証フェーズに移行中。</div></td></tr>
-          <tr><td><span class="deal-no">02</span></td><td><div class="deal-company">フォーティエンスコンサルティング株式会社</div><div class="deal-members">名和 / 沢坂 / 菊池</div></td><td><span class="status-badge status-adjust">2回目商談調整中</span></td><td><div class="deal-note">2回目の商談意向を獲得。現在、社内にて提案内容を調整中。</div></td></tr>
-          <tr><td><span class="deal-no">03</span></td><td><div class="deal-company">ポールトゥウィン株式会社</div><div class="deal-members">井之上 / 沢坂</div></td><td><span class="status-badge status-poc">POC検討中</span></td><td><div class="deal-note">部門ごとの閲覧制限機能がマスト対応。機能クリアでPOCに前向きな意向を獲得済み。</div></td></tr>
-          <tr><td><span class="deal-no">04</span></td><td><div class="deal-company">サンテミナ株式会社</div><div class="deal-members">井之上 / 沢坂</div></td><td><span class="status-badge status-trial">トライアルセットアップ中</span></td><td><div class="deal-note">無料トライアル導入意向確認済み。日程調整中。<span class="warning">⚠ Chatwork連携による機能要件未達の可能性あり。</span></div></td></tr>
-          <tr><td><span class="deal-no">05</span></td><td><div class="deal-company">豊田スチールセンター株式会社</div><div class="deal-members">新海 / 沢坂</div></td><td><span class="status-badge status-intent">トライアル意向獲得済</span></td><td><div class="deal-note">親会社からグローバル権限の獲得とアプリインストール操作の2点について社内調整中。</div></td></tr>
-          <tr><td><span class="deal-no">06</span></td><td><div class="deal-company">株式会社MTG</div><div class="deal-members">名和 / 沢坂</div></td><td><span class="status-badge status-rfp">RFP対応中</span></td><td><div class="deal-note">3月分。RFP要求に基づき対応中。</div></td></tr>
-          <tr><td><span class="deal-no">07</span></td><td><div class="deal-company">ユニソルホールディングス</div><div class="deal-members">沢坂</div></td><td><span class="status-badge status-confirm">トライアル意向確認済</span></td><td><div class="deal-note">無料トライアルの意向確認済み。現在価格調整中。</div></td></tr>
+          <tr><td><span class="deal-no">01</span></td><td><div class="deal-company">フューチャーセキュアウェイブ株式会社</div><div class="deal-members">名和 / 菊池 / 沢坂</div></td><td><span class="status-badge status-ph3">PJ化予定あり</span></td><td><div class="deal-note">2回目商談完了済み。現在セットアップ完了し検証フェーズに移行中。</div></td></tr>
+          <tr><td><span class="deal-no">02</span></td><td><div class="deal-company">フォーティエンスコンサルティング株式会社</div><div class="deal-members">名和 / 沢坂 / 菊池</div></td><td><span class="status-badge status-ph3">PJ化予定あり</span></td><td><div class="deal-note">2回目の商談意向を獲得。現在、社内にて提案内容を調整中。</div></td></tr>
+          <tr><td><span class="deal-no">03</span></td><td><div class="deal-company">ポールトゥウィン株式会社</div><div class="deal-members">井之上 / 沢坂</div></td><td><span class="status-badge status-eval">評価実施中</span></td><td><div class="deal-note">部門ごとの閲覧制限機能がマスト対応。機能クリアでPOCに前向きな意向を獲得済み。</div></td></tr>
+          <tr><td><span class="deal-no">04</span></td><td><div class="deal-company">サンテミナ株式会社</div><div class="deal-members">井之上 / 沢坂</div></td><td><span class="status-badge status-ph3">PJ化予定あり</span></td><td><div class="deal-note">無料トライアル導入意向確認済み。日程調整中。<span class="warning">⚠ Chatwork連携による機能要件未達の可能性あり。</span></div></td></tr>
+          <tr><td><span class="deal-no">05</span></td><td><div class="deal-company">豊田スチールセンター株式会社</div><div class="deal-members">新海 / 沢坂</div></td><td><span class="status-badge status-ph3">PJ化予定あり</span></td><td><div class="deal-note">親会社からグローバル権限の獲得とアプリインストール操作の2点について社内調整中。</div></td></tr>
+          <tr><td><span class="deal-no">06</span></td><td><div class="deal-company">株式会社MTG</div><div class="deal-members">名和 / 沢坂</div></td><td><span class="status-badge status-ph3">PJ化予定あり</span></td><td><div class="deal-note">3月分。RFP要求に基づき対応中。</div></td></tr>
+          <tr><td><span class="deal-no">07</span></td><td><div class="deal-company">ユニソルホールディングス</div><div class="deal-members">沢坂</div></td><td><span class="status-badge status-ph3">PJ化予定あり</span></td><td><div class="deal-note">無料トライアルの意向確認済み。現在価格調整中。</div></td></tr>
         </tbody>
       </table>
     </div>
@@ -1047,7 +1049,7 @@
 
   <!-- DEALS TABLE -->
   <div class="deals-section">
-    <div class="section-label">Pipeline Detail</div>
+    <div class="section-label">有効商談一覧</div>
     <table class="deals-table">
       <thead>
         <tr>
@@ -1064,7 +1066,7 @@
             <div class="deal-company">フューチャーセキュアウェイブ株式会社</div>
             <div class="deal-members">名和 / 菊池 / 沢坂</div>
           </td>
-          <td><span class="status-badge status-setup">セットアップ完了・検証中</span></td>
+          <td><span class="status-badge status-ph3">PJ化予定あり</span></td>
           <td><div class="deal-note">2回目商談完了済み。現在セットアップ完了し検証フェーズに移行中。</div></td>
         </tr>
         <tr>
@@ -1073,7 +1075,7 @@
             <div class="deal-company">フォーティエンスコンサルティング株式会社</div>
             <div class="deal-members">名和 / 沢坂 / 菊池</div>
           </td>
-          <td><span class="status-badge status-adjust">2回目商談調整中</span></td>
+          <td><span class="status-badge status-ph3">PJ化予定あり</span></td>
           <td><div class="deal-note">2回目の商談意向を獲得。現在、社内にて提案内容を調整中。</div></td>
         </tr>
         <tr>
@@ -1082,7 +1084,7 @@
             <div class="deal-company">ポールトゥウィン株式会社</div>
             <div class="deal-members">井之上 / 沢坂</div>
           </td>
-          <td><span class="status-badge status-poc">POC検討中</span></td>
+          <td><span class="status-badge status-eval">評価実施中</span></td>
           <td><div class="deal-note">部門ごとの閲覧制限機能がマスト対応。機能クリアでPOCに前向きな意向を獲得済み。</div></td>
         </tr>
         <tr>
@@ -1091,7 +1093,7 @@
             <div class="deal-company">サンテミナ株式会社</div>
             <div class="deal-members">井之上 / 沢坂</div>
           </td>
-          <td><span class="status-badge status-trial">トライアルセットアップ中</span></td>
+          <td><span class="status-badge status-ph3">PJ化予定あり</span></td>
           <td><div class="deal-note">無料トライアル導入意向確認済み。日程調整中。<span class="warning">⚠ Chatwork連携による機能要件未達の可能性あり。</span></div></td>
         </tr>
         <tr>
@@ -1100,7 +1102,7 @@
             <div class="deal-company">豊田スチールセンター株式会社</div>
             <div class="deal-members">新海 / 沢坂</div>
           </td>
-          <td><span class="status-badge status-intent">トライアル意向獲得済</span></td>
+          <td><span class="status-badge status-ph3">PJ化予定あり</span></td>
           <td><div class="deal-note">親会社からグローバル権限の獲得とアプリインストール操作の2点について社内調整中。</div></td>
         </tr>
         <tr>
@@ -1109,7 +1111,7 @@
             <div class="deal-company">株式会社MTG</div>
             <div class="deal-members">名和 / 沢坂</div>
           </td>
-          <td><span class="status-badge status-rfp">RFP対応中</span></td>
+          <td><span class="status-badge status-ph3">PJ化予定あり</span></td>
           <td><div class="deal-note">3月分。RFP要求に基づき対応中。</div></td>
         </tr>
         <tr>
@@ -1118,7 +1120,7 @@
             <div class="deal-company">ユニソルホールディングス</div>
             <div class="deal-members">沢坂</div>
           </td>
-          <td><span class="status-badge status-confirm">トライアル意向確認済</span></td>
+          <td><span class="status-badge status-ph3">PJ化予定あり</span></td>
           <td><div class="deal-note">無料トライアルの意向確認済み。現在価格調整中。</div></td>
         </tr>
       </tbody>
