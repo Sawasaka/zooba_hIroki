@@ -174,105 +174,105 @@
     display: block;
   }
 
-  /* ── PIPELINE FLOW ── */
-  .pipeline-flow {
+  /* ── KPI FLOW (3 cards + arrows) ── */
+  .kpi-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
     margin-bottom: 40px;
   }
 
-  .pipeline-track {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
+  .kpi-card {
+    flex: 1;
     background: var(--navy-card);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 16px;
+    border: 1px solid var(--gold-border);
+    border-radius: 6px;
+    padding: 28px 28px 24px;
+    position: relative;
+    overflow: visible;
+    transition: border-color 0.25s, transform 0.25s;
   }
 
-  .pipe-stage {
-    flex: 1;
-    padding: 20px 18px;
-    position: relative;
+  .kpi-card:hover {
+    border-color: rgba(201,168,76,0.55);
+    transform: translateY(-2px);
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    border-radius: 6px 0 0 6px;
+    opacity: 0.7;
+  }
+
+  .kpi-card:nth-child(3)::before { background: #5B8DB8; opacity: 0.6; }
+  .kpi-card:nth-child(5)::before { background: #2ECC71; opacity: 0.7; }
+
+  .kpi-arrow {
+    flex: 0 0 48px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    transition: background 0.2s;
+    align-items: center;
+    gap: 4px;
+    position: relative;
   }
 
-  .pipe-stage:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: -1px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-top: 18px solid transparent;
-    border-bottom: 18px solid transparent;
-    border-left: 14px solid var(--navy-card);
-    z-index: 2;
-    filter: drop-shadow(2px 0 0 rgba(255,255,255,0.06));
+  .kpi-arrow svg {
+    color: var(--gold);
+    opacity: 0.5;
   }
 
-  .pipe-stage:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-top: 19px solid transparent;
-    border-bottom: 19px solid transparent;
-    border-left: 15px solid rgba(255,255,255,0.07);
-    z-index: 1;
-  }
-
-  .pipe-stage.stage-source  { background: rgba(255,255,255,0.02); }
-  .pipe-stage.stage-phase3  { background: rgba(201,168,76,0.06); border-left: 3px solid rgba(201,168,76,0.4); }
-  .pipe-stage.stage-trial   { background: rgba(243,156,18,0.07); border-left: 3px solid rgba(243,156,18,0.4); }
-  .pipe-stage.stage-meeting { background: rgba(91,141,184,0.07); border-left: 3px solid rgba(91,141,184,0.4); }
-  .pipe-stage.stage-poc     { background: rgba(46,204,113,0.08); border-left: 3px solid rgba(46,204,113,0.5); }
-
-  .pipe-stage-tag {
+  .kpi-arrow-label {
     font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    letter-spacing: 0.1em;
     color: var(--text-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  .pipe-stage-name {
-    font-size: 12px;
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
     color: var(--text-secondary);
-    font-weight: 500;
-    line-height: 1.3;
+    text-transform: uppercase;
+    margin-bottom: 12px;
   }
 
-  .pipe-stage-count {
+  .kpi-value {
     font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', serif;
-    font-size: 36px;
+    font-size: 56px;
     font-weight: 300;
+    color: var(--gold-light);
     line-height: 1;
-    letter-spacing: -1px;
-    margin-top: 4px;
+    letter-spacing: -2px;
   }
 
-  .pipe-stage-count span {
+  .kpi-card:nth-child(3) .kpi-value { color: #85C1E9; }
+  .kpi-card:nth-child(5) .kpi-value { color: #2ECC71; }
+
+  .kpi-value span {
+    font-size: 20px;
+    color: var(--text-secondary);
     font-family: 'Hiragino Sans', sans-serif;
-    font-size: 13px;
     font-weight: 400;
-    margin-left: 2px;
+    letter-spacing: 0;
+    margin-left: 4px;
   }
 
-  .pipe-stage.stage-source  .pipe-stage-count { color: var(--text-secondary); }
-  .pipe-stage.stage-phase3  .pipe-stage-count { color: var(--gold-light); }
-  .pipe-stage.stage-trial   .pipe-stage-count { color: #F0B429; }
-  .pipe-stage.stage-meeting .pipe-stage-count { color: #85C1E9; }
-  .pipe-stage.stage-poc     .pipe-stage-count { color: #2ECC71; }
+  .kpi-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    line-height: 1.5;
+  }
 
-  /* hover tooltip for companies */
-  .pipe-companies-tooltip {
+  /* hover tooltip */
+  .kpi-tooltip {
     display: none;
     position: absolute;
     bottom: calc(100% + 10px);
@@ -283,36 +283,33 @@
     border-radius: 6px;
     padding: 12px 14px;
     z-index: 100;
-    min-width: 190px;
+    min-width: 200px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.55);
     pointer-events: none;
+    white-space: nowrap;
   }
 
-  .pipe-companies-tooltip::after {
+  .kpi-tooltip::after {
     content: '';
     position: absolute;
-    top: 100%;
-    left: 50%;
+    top: 100%; left: 50%;
     transform: translateX(-50%);
-    border: 7px solid transparent;
+    border: 6px solid transparent;
     border-top-color: #1a2e45;
     z-index: 2;
   }
 
-  .pipe-companies-tooltip::before {
+  .kpi-tooltip::before {
     content: '';
     position: absolute;
-    top: calc(100% + 1px);
-    left: 50%;
+    top: calc(100% + 1px); left: 50%;
     transform: translateX(-50%);
-    border: 7px solid transparent;
+    border: 6px solid transparent;
     border-top-color: rgba(255,255,255,0.14);
     z-index: 1;
   }
 
-  .pipe-stage:hover .pipe-companies-tooltip {
-    display: block;
-  }
+  .kpi-card:hover .kpi-tooltip { display: block; }
 
   .tooltip-label {
     font-size: 9px;
@@ -322,56 +319,15 @@
     margin-bottom: 8px;
   }
 
-  .pipe-company {
+  .tooltip-row {
     font-size: 11px;
     color: var(--text-secondary);
-    line-height: 1.5;
-    padding: 4px 0 4px 10px;
+    line-height: 1.6;
+    padding: 3px 0 3px 10px;
     border-left: 2px solid rgba(255,255,255,0.12);
   }
 
-  .pipe-stage.stage-trial   .pipe-company { border-color: rgba(243,156,18,0.5); color: #F0B429; }
-  .pipe-stage.stage-meeting .pipe-company { border-color: rgba(91,141,184,0.5); color: #85C1E9; }
-  .pipe-stage.stage-poc     .pipe-company { border-color: rgba(46,204,113,0.6); color: #2ECC71; }
-
-  .pipe-hint {
-    font-size: 9px;
-    color: var(--text-muted);
-    margin-top: 8px;
-    letter-spacing: 0.06em;
-    opacity: 0.7;
-  }
-
-  .pipe-stage:not(.stage-source):not(.stage-phase3):hover .pipe-hint {
-    color: var(--gold);
-    opacity: 1;
-  }
-
-  .pipeline-summary {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .pipe-summary-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--text-secondary);
-  }
-
-  .pipe-summary-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .pipe-summary-item strong {
-    color: var(--text-primary);
-  }
+  .kpi-card:nth-child(5) .tooltip-row { border-color: rgba(46,204,113,0.5); color: #2ECC71; }
 
   /* ── DEALS TABLE ── */
   .deals-section {
@@ -719,76 +675,46 @@
     </div>
   </header>
 
-  <!-- PIPELINE FLOW -->
-  <div class="section-label">Pipeline Progression</div>
-  <div class="pipeline-flow">
-    <div class="pipeline-track">
+  <!-- KPI FLOW -->
+  <div class="section-label">Key Performance Indicators</div>
+  <div class="kpi-flow">
 
-      <div class="pipe-stage stage-source">
-        <div class="pipe-stage-tag">起点</div>
-        <div class="pipe-stage-name">Phase 2<br>初回商談済み</div>
-        <div class="pipe-stage-count">7<span>社</span></div>
-      </div>
-
-      <div class="pipe-stage stage-phase3">
-        <div class="pipe-stage-tag">昇格</div>
-        <div class="pipe-stage-name">Phase 3<br>プロジェクト化予定</div>
-        <div class="pipe-stage-count">7<span>社</span></div>
-      </div>
-
-      <div class="pipe-stage stage-trial">
-        <div class="pipe-stage-tag">トライアル意向</div>
-        <div class="pipe-stage-name">導入意向<br>獲得済み</div>
-        <div class="pipe-stage-count">4<span>社</span></div>
-        <div class="pipe-hint">▲ ホバーで詳細</div>
-        <div class="pipe-companies-tooltip">
-          <div class="tooltip-label">対象企業 — 4社</div>
-          <div class="pipe-company">フューチャーセキュアウェイブ</div>
-          <div class="pipe-company">サンテミナ</div>
-          <div class="pipe-company">豊田スチールセンター</div>
-          <div class="pipe-company">ユニソルホールディングス</div>
-        </div>
-      </div>
-
-      <div class="pipe-stage stage-meeting">
-        <div class="pipe-stage-tag">次回商談</div>
-        <div class="pipe-stage-name">アポ調整中<br>/ RFP対応</div>
-        <div class="pipe-stage-count">2<span>社</span></div>
-        <div class="pipe-hint">▲ ホバーで詳細</div>
-        <div class="pipe-companies-tooltip">
-          <div class="tooltip-label">対象企業 — 2社</div>
-          <div class="pipe-company">フォーティエンスコンサルティング</div>
-          <div class="pipe-company">株式会社MTG</div>
-        </div>
-      </div>
-
-      <div class="pipe-stage stage-poc">
-        <div class="pipe-stage-tag">最前線</div>
-        <div class="pipe-stage-name">POC<br>実行確定</div>
-        <div class="pipe-stage-count">1<span>社</span></div>
-        <div class="pipe-hint">▲ ホバーで詳細</div>
-        <div class="pipe-companies-tooltip">
-          <div class="tooltip-label">対象企業 — 1社</div>
-          <div class="pipe-company">ポールトゥウィン</div>
-        </div>
-      </div>
-
+    <div class="kpi-card">
+      <div class="kpi-label">有効商談数</div>
+      <div class="kpi-value">7<span>社</span></div>
+      <div class="kpi-sub">フェーズ03 認定済み商談の総数</div>
     </div>
 
-    <div class="pipeline-summary">
-      <div class="pipe-summary-item">
-        <div class="pipe-summary-dot" style="background:#F0B429"></div>
-        トライアル意向 <strong>4社</strong>
-      </div>
-      <div class="pipe-summary-item">
-        <div class="pipe-summary-dot" style="background:#5B8DB8"></div>
-        次回商談 / RFP <strong>2社</strong>
-      </div>
-      <div class="pipe-summary-item">
-        <div class="pipe-summary-dot" style="background:#2ECC71"></div>
-        POC 実行確定 <strong>1社</strong>
+    <div class="kpi-arrow">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="kpi-arrow-label">昇格</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-label">フェーズ 2 → 3 昇格</div>
+      <div class="kpi-value">7<span>社</span></div>
+      <div class="kpi-sub">今期 Phase 2 からの昇格件数</div>
+    </div>
+
+    <div class="kpi-arrow">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M6 14h16M16 8l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="kpi-arrow-label">最前線</div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="kpi-label">POC 実行確定</div>
+      <div class="kpi-value">1<span>社</span></div>
+      <div class="kpi-sub">最優先クロージング案件</div>
+      <div class="kpi-tooltip">
+        <div class="tooltip-label">対象企業</div>
+        <div class="tooltip-row">ポールトゥウィン株式会社</div>
       </div>
     </div>
+
   </div>
 
   <!-- DEALS TABLE -->
