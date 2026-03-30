@@ -744,18 +744,17 @@
   .help-btn {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
+    gap: 5px;
+    border-radius: 3px;
     border: 1px solid var(--gold-border);
     background: var(--gold-dim);
     color: var(--gold);
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     cursor: pointer;
-    line-height: 1;
-    margin-left: 6px;
+    padding: 3px 8px;
+    margin-left: 8px;
     flex-shrink: 0;
     transition: background 0.2s, border-color 0.2s;
     vertical-align: middle;
@@ -763,7 +762,7 @@
   }
 
   .help-btn:hover {
-    background: rgba(201,168,76,0.3);
+    background: rgba(201,168,76,0.25);
     border-color: var(--gold);
   }
 
@@ -951,7 +950,7 @@
   <div id="tab-all" class="tab-panel active">
 
     <!-- KPI FLOW (全体・合算) -->
-    <div class="section-label">Key Performance Indicators — 全期間合算 <button class="help-btn" onclick="document.getElementById('phase-modal').classList.add('open')">?</button></div>
+    <div class="section-label">Key Performance Indicators — 全期間合算 <button class="help-btn" onclick="document.getElementById('phase-modal').classList.add('open')">認定条件とは？</button></div>
     <div class="kpi-flow">
       <div class="kpi-card">
         <div class="kpi-label">有効商談数</div>
@@ -1005,7 +1004,7 @@
   <div id="tab-mar" class="tab-panel">
 
   <!-- KPI FLOW -->
-  <div class="section-label">Key Performance Indicators <button class="help-btn" onclick="document.getElementById('phase-modal').classList.add('open')">?</button></div>
+  <div class="section-label">Key Performance Indicators <button class="help-btn" onclick="document.getElementById('phase-modal').classList.add('open')">認定条件とは？</button></div>
   <div class="kpi-flow">
 
     <div class="kpi-card">
