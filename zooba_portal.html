@@ -2374,6 +2374,16 @@ function showSection(id, el) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.sidebar-item').forEach(s => s.classList.remove('active'));
 
+  // AIヘルプデスク以外に切り替えるとき、ai-tab-content をすべて非表示にしてデフォルトに戻す
+  if (id !== 'ai_setup') {
+    document.querySelectorAll('.ai-tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.ai-tab').forEach(b => b.classList.remove('active'));
+    const commonTab = document.getElementById('ai-tab-common');
+    const commonBtn = document.querySelector('.ai-tab[onclick*="common"]');
+    if (commonTab) commonTab.classList.add('active');
+    if (commonBtn) commonBtn.classList.add('active');
+  }
+
   // 孤立セクションを表示する場合は #main 内に移動する
   if (orphanedIds.includes(id)) {
     const s = document.getElementById('section-' + id);
